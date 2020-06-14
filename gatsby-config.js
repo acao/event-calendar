@@ -8,7 +8,7 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   project_id: PROJECT_ID,
   private_key_id: PRIVATE_KEY_ID,
   private_key: PRIVATE_KEY.replace(/(\\r)|(\\n)/g, '\n'),
-  client_email: `${PROJECT_ID}@appspot.gserviceaccount.com`,
+  client_email: `event-calendar@event-calendar-280122.iam.gserviceaccount.com`,
   client_id: '',
   auth_uri: 'https://accounts.google.com/o/oauth2/auth',
   token_uri: 'https://oauth2.googleapis.com/token',
