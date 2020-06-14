@@ -4,5 +4,4 @@ module.exports = {
   formLink: 'https://forms.gle/Hay717tHccEQVmpE6',
   limitMonthInTheFuture: 3,
   theme: require('./themes/main.json'),
-  pathPrefix: `/event-calendar`,
 };
