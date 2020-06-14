@@ -23,6 +23,7 @@ const SPREADSHEET_QUERY = graphql`
         id
         eventName: whatisthename
         date: when
+        eventtime: time
         eventLink: linktotheevent
         place: where
       }

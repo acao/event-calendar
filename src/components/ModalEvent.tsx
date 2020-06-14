@@ -86,9 +86,19 @@ const EventDescription = ({ event }: { event: EventInfo }) => (
       <Box margin={{ top: 'medium' }}>
         <Button
           href={event.eventLink}
-          label="Link"
+          label="External Link"
           alignSelf="end"
+          a11yTitle="External Event link"
+          target="_blank"
+          primary
+        />
+      </Box>
+      <Box margin={{ top: 'medium' }}>
+        <Button
+          href={`/event/${event.id}/`}
+          label="Link"
           a11yTitle="Event link"
+          alignSelf="end"
           target="_blank"
           primary
         />

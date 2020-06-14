@@ -1,4 +1,6 @@
 const appConfig = require('./appConfig');
+const path = require('path');
+
 require('dotenv').config();
 
 const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
@@ -14,7 +16,7 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
 });
 
-const SPREADSHEET_ID = '1e6mNWZZLuBBFk2c-zGRSSh8g5mqoQUPbW78NmA_EI88';
+const SPREADSHEET_ID = '1OWY4D3BTks3bi2Jsr9TjxSDt4YhP4EB5rXbIbbfoKnA';
 
 const { theme, ...siteMetadata } = appConfig;
 
@@ -29,7 +31,11 @@ module.exports = {
       options: {
         spreadsheetId: SPREADSHEET_ID,
         worksheetTitle: 'Events',
-        credentials: buildCredentials(process.env),
+        credentials: process.env.PROJECT_ID
+          ? buildCredentials(process.env)
+          : path.resolve(
+              '/home/rikki/Downloads/event-calendar-280122-d3ef5997819e.json',
+            ),
       },
     },
     {
