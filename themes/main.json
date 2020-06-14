@@ -42,6 +42,18 @@
       "text": "black",
       "separator": "#666",
       "background": "white"
+    },
+    "type-action": {
+      "text": "white",
+      "background": "black"
+    },
+    "type-meeting": {
+      "text": "white",
+      "background": "red"
+    },
+    "type-other": {
+      "background": "#1fe5bdDD",
+      "text": "white"
     }
   }
 }

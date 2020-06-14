@@ -19,7 +19,7 @@ const buildDaysWithEvents = (
       return {
         date,
         events: events.filter((event) =>
-          isSameDay(parseEventDate(event.date), date),
+          isSameDay(parseEventDate(event.eventdate), date),
         ),
       };
     });

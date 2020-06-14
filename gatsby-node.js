@@ -10,11 +10,14 @@ exports.createSchemaCustomization = async ({ actions }) => {
       children: [Node!]!
       internal: Internal!
       timestamp: String
-      whatisthename: String
-      when: String
-      time: String
-      linktotheevent: String
-      where: String
+      eventname: String
+      eventdate: String
+      eventtime: String
+      location: String
+      description: String
+      eventlink: String
+      eventtype: String
+      shouldpublish: Boolean
     }
   `;
   createTypes(typeDefs);
@@ -22,24 +25,43 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
-  const queryResults = await graphql(`
-    query AllRows {
-      rows: allGoogleSheetEventsRow {
-        nodes {
-          id
-          eventName: whatisthename
-          date: when
-          eventtime: time
-          eventLink: linktotheevent
-          place: where
+  const queryResults = await graphql(
+    `
+      query AllRows($filter: googleSheetEventsRowFilterInput) {
+        rows: allGoogleSheetEventsRow(filter: $filter) {
+          nodes {
+            id
+            eventname
+            eventdate
+            eventtime
+            eventlink
+            location
+            description
+            eventtype
+            shouldpublish
+          }
         }
       }
-    }
-  `);
+    `,
+    {
+      filter: {
+        eventname: {
+          ne: null,
+        },
+        eventdate: {
+          ne: null,
+        },
+        shouldpublish: {
+          ne: false,
+        },
+      },
+    },
+  );
 
   const eventTemplate = path.resolve(`src/templates/event.tsx`);
 
   queryResults.data.rows.nodes.forEach((node) => {
+    console.log(node);
     createPage({
       path: `/event/${node.id}`,
       component: eventTemplate,

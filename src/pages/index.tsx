@@ -12,20 +12,29 @@ import { format } from 'date-fns';
 
 // override this query with your own questions!
 const SPREADSHEET_QUERY = graphql`
-  query eventsQuery {
+  query AllRows {
     site {
       siteMetadata {
         limitMonthInTheFuture
       }
     }
-    allGoogleSheetEventsRow {
+    rows: allGoogleSheetEventsRow(
+      filter: {
+        eventname: { ne: null }
+        eventdate: { ne: null }
+        shouldpublish: { ne: false }
+      }
+    ) {
       nodes {
         id
-        eventName: whatisthename
-        date: when
-        eventtime: time
-        eventLink: linktotheevent
-        place: where
+        eventname
+        eventdate
+        eventtime
+        eventlink
+        location
+        description
+        eventtype
+        shouldpublish
       }
     }
   }
@@ -35,13 +44,12 @@ const CalendarPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState<ModalData>();
 
-  const { allGoogleSheetEventsRow, site } = useStaticQuery(SPREADSHEET_QUERY);
+  const { rows, site } = useStaticQuery(SPREADSHEET_QUERY);
   const { limitMonthInTheFuture } = site.siteMetadata;
 
   const months = useMemo(
-    () =>
-      groupEventsByMonth(allGoogleSheetEventsRow.nodes, limitMonthInTheFuture),
-    [allGoogleSheetEventsRow.nodes, limitMonthInTheFuture],
+    () => groupEventsByMonth(rows.nodes, limitMonthInTheFuture),
+    [rows.nodes, limitMonthInTheFuture],
   );
 
   const openModal = useCallback((data: ModalData) => {

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Text, Box, ResponsiveContext } from 'grommet';
+import getEventType from '../../utils/getEventType';
 
-const MAX_AMOUNT_EVENTS = 2;
+const MAX_AMOUNT_EVENTS = 3;
 
 type Props = {
   events: EventInfo[];
@@ -20,30 +21,35 @@ const Events = ({ events, hasPast }: Props) => {
       fill="horizontal"
       margin="none"
     >
-      {events.slice(0, isPhone ? 99 : MAX_AMOUNT_EVENTS).map((event) => (
-        <Box key={event.id}>
-          <Box
-            round="xsmall"
-            background={
-              hasPast
-                ? 'calendar-past-event-background'
-                : 'calendar-event-background'
-            }
-            pad="2px"
-          >
-            <Text
-              size="small"
-              truncate
-              color={
-                hasPast ? 'calendar-past-event-text' : 'calendar-event-text'
+      {events.slice(0, isPhone ? 99 : MAX_AMOUNT_EVENTS).map((event) => {
+        const eventType = getEventType(event.eventtype);
+        return (
+          <Box key={event.id}>
+            <Box
+              round="xsmall"
+              background={
+                hasPast
+                  ? 'calendar-past-event-background'
+                  : `calendar-type-${eventType}-background`
               }
-              a11yTitle="Event name"
+              pad="2px"
             >
-              {event.eventName}
-            </Text>
+              <Text
+                size="small"
+                truncate
+                color={
+                  hasPast
+                    ? 'calendar-past-event-text'
+                    : `calendar-type-${eventType}-text`
+                }
+                a11yTitle="Event name"
+              >
+                {event.eventname}
+              </Text>
+            </Box>
           </Box>
-        </Box>
-      ))}
+        );
+      })}
 
       {events.length > MAX_AMOUNT_EVENTS && (
         <Text size="small" truncate>

@@ -13,7 +13,7 @@ const removeOldAndFutureEvents = (
   today: Date,
   monthDiff: number,
 ) => {
-  const eventDate = parseEventDate(event.date);
+  const eventDate = parseEventDate(event.eventdate);
 
   if (!isSameMonth(eventDate, today) && isBefore(eventDate, today))
     return false;
@@ -33,7 +33,8 @@ const groupEventsByMonth = (
       removeOldAndFutureEvents(event, today, monthsDifferenceThreshold),
     )
     .reduce((acc: { [key: string]: EventInfo[] }, event) => {
-      const monthYear = format(parseEventDate(event.date), 'MM-yyyy');
+      console.log(event.eventdate);
+      const monthYear = format(parseEventDate(event.eventdate), 'MM-yyyy');
 
       const events = acc[monthYear] || [];
       return {
