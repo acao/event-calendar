@@ -18,6 +18,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       eventlink: String
       eventtype: String
       shouldpublish: Boolean
+      blmendorsed: Boolean
     }
   `;
   createTypes(typeDefs);
@@ -39,6 +40,7 @@ exports.createPages = async ({ actions, graphql }) => {
             description
             eventtype
             shouldpublish
+            blmendorsed
           }
         }
       }

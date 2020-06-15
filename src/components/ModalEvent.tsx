@@ -84,7 +84,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
           <Text
             a11yTitle="Event location"
             color="calendar-modal-text"
-            margin={{ top: 'medium' }}
+            margin={{ top: 'small' }}
           >
             <strong>Location:</strong> {event.location}
           </Text>
@@ -92,12 +92,21 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
         <Text
           color="calendar-modal-text"
           a11yTitle="Event Type"
-          margin={{ top: 'medium' }}
+          margin={{ top: 'small' }}
         >
           <strong>Type:</strong> {event.eventtype}
         </Text>
+        <Text
+          color="calendar-modal-text"
+          a11yTitle="BLM Endorsement?"
+          margin={{ top: 'small' }}
+        >
+          {`This event ${
+            event.blmendorsed ? 'is' : 'is not'
+          } endorsed by BLM Cleveland`}
+        </Text>
 
-        <Box margin={{ top: 'medium' }}>
+        <Box margin={{ top: 'small' }}>
           <Button
             href={`/event/${event.id}/`}
             label="Read More"

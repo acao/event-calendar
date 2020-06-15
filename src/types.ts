@@ -8,6 +8,7 @@ type EventInfo = {
   description: string;
   eventtype: string;
   shouldpublish: boolean;
+  blmendorsed: boolean;
 };
 
 type ModalData = {
