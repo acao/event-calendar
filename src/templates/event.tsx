@@ -1,8 +1,8 @@
 import React from 'react';
-import GithubCorner from '../components/GithubCorner';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
-import { Heading, Text, Main, Button } from 'grommet';
+import { Heading, Text, Main, Button, Box } from 'grommet';
+import getEventType from '../utils/getEventType';
 
 const LabelledText = ({ label, text }: { label: string; text: string }) => {
   return (
@@ -14,6 +14,7 @@ const LabelledText = ({ label, text }: { label: string; text: string }) => {
 
 const EventPage = (props: { pageContext: { event: EventInfo } }) => {
   const { event } = props.pageContext;
+  const eventType = getEventType(event.eventtype);
   return (
     <Layout>
       <Main pad="large" animation="fadeIn">
@@ -23,15 +24,26 @@ const EventPage = (props: { pageContext: { event: EventInfo } }) => {
         <LabelledText label="Type" text={event.eventtype} />
         <LabelledText label="Location" text={event.location} />
         <p>{event.description}</p>
-        {event.eventlink && (
+        <Box margin={{ top: 'small' }}>
+          {event.eventlink && (
+            <Button
+              alignSelf="start"
+              label={`External Link`}
+              href={event.eventlink}
+              primary
+              color={`calendar-type-${eventType}-background`}
+            />
+          )}
+        </Box>
+        <Box margin={{ top: 'small' }}>
           <Button
             alignSelf="start"
-            label={`More Details`}
-            href={event.eventlink}
+            label={`< Back to calendar`}
+            href="/"
+            primary
+            color={`calendar-type-${eventType}-background`}
           />
-        )}
-
-        <Button alignSelf="start" label={`Back to calendar`} href="/" />
+        </Box>
       </Main>
       <Footer />
     </Layout>

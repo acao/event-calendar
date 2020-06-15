@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Box } from 'grommet';
 import { graphql, useStaticQuery } from 'gatsby';
-import GithubCorner from '../components/GithubCorner';
 import Footer from '../components/Footer';
 import ModalEvent from '../components/ModalEvent';
 import Month from '../components/Calendar/Month';
@@ -74,7 +73,6 @@ const CalendarPage = () => {
         <ModalEvent onClose={() => setShowModal(false)} {...modalData!} />
       )}
 
-      <GithubCorner href="https://github.com/EmaSuriano/gatsby-starter-event-calendar" />
       <Footer />
     </Layout>
   );

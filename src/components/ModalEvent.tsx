@@ -116,6 +116,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
               alignSelf="end"
               a11yTitle="External Event link"
               target="_blank"
+              primary
               color={`calendar-type-${eventType}-background`}
             />
           </Box>
