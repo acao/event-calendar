@@ -51,6 +51,10 @@
       "text": "white",
       "background": "red"
     },
+    "type-training": {
+      "text": "white",
+      "background": "green"
+    },
     "type-other": {
       "background": "#1fe5bdDD",
       "text": "white"

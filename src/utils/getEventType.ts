@@ -1,4 +1,4 @@
-const EVENT_TYPES = ['meeting', 'action', 'other'];
+const EVENT_TYPES = ['meeting', 'action', 'other', 'training'];
 
 export default function getEventType(type: string) {
   if (type) {
