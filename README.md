@@ -1,4 +1,4 @@
-# Gatsby Starter: Event Calendar 📅
+# Gatsby Starter: Event Calendar 📅 (Forked by CDSDC)
 
 [![Travis badge](https://api.travis-ci.com/EmaSuriano/gatsby-starter-event-calendar.svg)](https://travis-ci.com/EmaSuriano/gatsby-starter-event-calendar)
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
