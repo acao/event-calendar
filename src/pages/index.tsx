@@ -7,6 +7,7 @@ import Month from '../components/Calendar/Month';
 import Layout from '../components/Layout';
 import groupEventsByMonth from '../utils/groupEventsByMonth';
 import { format } from 'date-fns';
+import Hero from '../components/Hero';
 
 // override this query with your own questions!
 const SPREADSHEET_QUERY = graphql`
@@ -57,6 +58,7 @@ const CalendarPage = () => {
 
   return (
     <Layout>
+      <Hero />
       <Box id="calendars" animation="fadeIn">
         {months.map((month) => (
           <Month
