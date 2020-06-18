@@ -10,14 +10,14 @@ exports.createSchemaCustomization = async ({ actions }) => {
       children: [Node!]!
       internal: Internal!
       timestamp: String
-      eventname: String
-      eventdate: String
+      eventname: String!
+      eventdate: String!
       eventtime: String
-      location: String
+      location: String!
       description: String
       eventlink: String
       eventtype: String
-      shouldpublish: Boolean
+      shouldpublish: Boolean!
       blmendorsed: Boolean
     }
   `;
@@ -54,16 +54,15 @@ exports.createPages = async ({ actions, graphql }) => {
           ne: null,
         },
         shouldpublish: {
-          ne: false,
+          eq: true,
         },
       },
     },
   );
 
   const eventTemplate = path.resolve(`src/templates/event.tsx`);
-
+  console.log('creating pages:', queryResults.data.rows.nodes.length);
   queryResults.data.rows.nodes.forEach((node) => {
-    console.log(node);
     createPage({
       path: `/event/${node.id}`,
       component: eventTemplate,

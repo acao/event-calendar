@@ -4,7 +4,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Footer from '../components/Footer';
 import ModalEvent from '../components/ModalEvent';
 import Month from '../components/Calendar/Month';
-import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import groupEventsByMonth from '../utils/groupEventsByMonth';
 import { format } from 'date-fns';
@@ -58,8 +57,6 @@ const CalendarPage = () => {
 
   return (
     <Layout>
-      <Hero />
-
       <Box id="calendars" animation="fadeIn">
         {months.map((month) => (
           <Month
