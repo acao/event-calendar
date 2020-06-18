@@ -1,6 +1,6 @@
 import React, { ReactNode, Fragment } from 'react';
-import { Layer, Box, Text, Button, Anchor } from 'grommet';
-import { FormClose, Globe } from 'grommet-icons';
+import { Layer, Box, Text, Button } from 'grommet';
+import { FormClose } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
 
@@ -16,7 +16,7 @@ const ModalEvent = ({ onClose, date, events }: Props) => (
       align="center"
       tag="section"
       margin="small"
-      overflow="scroll"
+      overflow="scroll-y"
     >
       {events.map((event, i, arr) => (
         <Fragment key={event.id}>
