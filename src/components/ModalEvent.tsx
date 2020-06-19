@@ -1,6 +1,6 @@
 import React, { ReactNode, Fragment } from 'react';
-import { Layer, Box, Text, Button, Anchor } from 'grommet';
-import { FormClose, Globe } from 'grommet-icons';
+import { Layer, Box, Text, Button } from 'grommet';
+import { FormClose } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
 
@@ -11,7 +11,13 @@ type Props = ModalData & {
 const ModalEvent = ({ onClose, date, events }: Props) => (
   <Layer position="center" onClickOutside={onClose} onEsc={onClose} modal>
     <Header onClick={onClose}>{format(date, 'cccc d, MMMM')}</Header>
-    <Box direction="column" align="center" tag="section" margin="small">
+    <Box
+      direction="column"
+      align="center"
+      tag="section"
+      margin="small"
+      overflow="scroll-y"
+    >
       {events.map((event, i, arr) => (
         <Fragment key={event.id}>
           <EventDescription event={event} />
@@ -66,15 +72,31 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
       fill="horizontal"
       background="calendar-modal-background"
       justify="center"
+      height="auto"
     >
-      <Text a11yTitle="Event time" margin="small" color="calendar-modal-text">
-        {event.eventtime}
-      </Text>
+      <Box margin="small" width="small">
+        <Text
+          a11yTitle="Event time"
+          margin="small"
+          size="small"
+          color="calendar-modal-text"
+        >
+          {event.eventtime}
+        </Text>
+        <Text
+          color="calendar-modal-text"
+          a11yTitle="Event Type"
+          margin="small"
+          size="small"
+        >
+          <strong>Type:</strong> {event.eventtype}
+        </Text>
+      </Box>
       <Box margin="small" width="medium">
         <Text
           a11yTitle="Event name"
           weight="bold"
-          size="large"
+          size="medium"
           color="calendar-modal-text"
         >
           {event.eventname}
@@ -84,52 +106,24 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
           <Text
             a11yTitle="Event location"
             color="calendar-modal-text"
+            size="small"
             margin={{ top: 'small' }}
           >
             <strong>Location:</strong> {event.location}
           </Text>
         )}
-        <Text
-          color="calendar-modal-text"
-          a11yTitle="Event Type"
-          margin={{ top: 'small' }}
-        >
-          <strong>Type:</strong> {event.eventtype}
-        </Text>
-        <Text
-          color="calendar-modal-text"
-          a11yTitle="BLM Endorsement?"
-          margin={{ top: 'small' }}
-        >
-          {`This event ${
-            event.blmendorsed ? 'is' : 'is not'
-          } endorsed by BLM Cleveland`}
-        </Text>
 
-        <Box margin={{ top: 'small' }}>
+        <Box margin={{ top: 'small' }} width="medium">
           <Button
             href={`/event/${event.id}/`}
             label="Read More"
             a11yTitle="Read More"
-            alignSelf="end"
+            alignSelf="start"
             target="_blank"
             primary
             color={`calendar-type-${eventType}-background`}
           />
         </Box>
-        {event.eventlink && (
-          <Box margin={{ top: 'medium' }}>
-            <Button
-              href={event.eventlink}
-              label="External Link"
-              alignSelf="end"
-              a11yTitle="External Event link"
-              target="_blank"
-              primary
-              color={`calendar-type-${eventType}-background`}
-            />
-          </Box>
-        )}
       </Box>
     </Box>
   );

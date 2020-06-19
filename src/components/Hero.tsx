@@ -32,23 +32,27 @@ const Hero = () => {
       a11yTitle="Calendar events title"
       align="center"
       flex="grow"
-      height="100vh"
+      height="auto"
       justify="center"
       pad="medium"
       animation="slideDown"
     >
-      <Box width="small" height="small">
+      <Box width="xsmall" height="xsmall">
         <Image fit="contain" src={logoSrc} a11yTitle="logo" />
       </Box>
 
       <Separator />
 
-      <Heading textAlign="center" size="large" a11yTitle="Application title">
+      <Heading textAlign="center" size="medium" a11yTitle="Application title">
         {title}
       </Heading>
 
       {subTitle && (
-        <Heading textAlign="center" a11yTitle="Application sub title">
+        <Heading
+          textAlign="center"
+          a11yTitle="Application sub title"
+          size="small"
+        >
           {subTitle}
         </Heading>
       )}
