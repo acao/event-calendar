@@ -69,8 +69,6 @@ const CalendarPage = () => {
       {showModal && (
         <ModalEvent onClose={() => setShowModal(false)} {...modalData!} />
       )}
-
-      <Footer />
     </Layout>
   );
 };

@@ -55,8 +55,9 @@ const Month = ({ events, startDate, openModal }: Props) => {
 };
 
 const MonthContainer = styled.div`
-  border-radius: 12px;
-  border: 4px ${(props) => props.theme.global.colors.border} solid;
+  border-radius: 2px;
+  border: 1px ${(props) => props.theme.global.colors.border} solid;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.125);
 `;
 
 export default React.memo(Month);

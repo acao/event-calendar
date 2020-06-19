@@ -61,7 +61,7 @@ const CalendarDay = ({ date, type }: DayProps) => (
   <DayText
     color={`calendar-${type}-text`}
     type={type}
-    size="large"
+    size="medium"
     a11yTitle="Day number"
     textAlign="end"
   >

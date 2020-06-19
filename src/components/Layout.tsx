@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Grommet } from 'grommet';
 import Helmet from './Helmet';
+import Footer from './Footer';
 import customTheme from '../utils/customTheme';
 
 const GlobalStyle = createGlobalStyle`
@@ -25,6 +26,7 @@ const Layout = ({ children }: Props) => (
     <GlobalStyle />
     <Helmet />
     {children}
+    <Footer />
   </Grommet>
 );
 

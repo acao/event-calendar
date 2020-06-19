@@ -56,7 +56,6 @@ const EventPage = (props: { pageContext: { event: EventInfo } }) => {
           />
         </Box>
       </Main>
-      <Footer />
     </Layout>
   );
 };
