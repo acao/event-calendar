@@ -38,13 +38,19 @@ const Helmet = () => {
     { name: 'twitter:site', content: title },
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: subtitle },
-    { name: 'twitter:image', content: 'og-photo.jpeg' },
+    {
+      name: 'twitter:image',
+      content: 'https://clevelandaction.org/og-photo.jpeg',
+    },
 
     { property: 'og:type', content: 'website' },
     { property: 'og:title', content: title },
     { property: 'og:description', content: subtitle },
     { property: 'og:site_name', content: title },
-    { property: 'og:image', content: 'og-photo.jpeg' },
+    {
+      property: 'og:image',
+      content: 'https://clevelandaction.org/og-photo.jpegg',
+    },
   ];
 
   return (

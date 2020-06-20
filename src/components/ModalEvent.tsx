@@ -1,6 +1,6 @@
 import React, { ReactNode, Fragment } from 'react';
 import { Layer, Box, Text, Button } from 'grommet';
-import { FormClose } from 'grommet-icons';
+import { FormClose, Checkmark } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
 
@@ -16,7 +16,7 @@ const ModalEvent = ({ onClose, date, events }: Props) => (
       align="center"
       tag="section"
       margin="small"
-      overflow="scroll-y"
+      overflow="scroll"
     >
       {events.map((event, i, arr) => (
         <Fragment key={event.id}>
@@ -28,6 +28,7 @@ const ModalEvent = ({ onClose, date, events }: Props) => (
               height="3px"
               width="100%"
               style={{ borderRadius: '50%' }}
+              flex="grow"
             />
           )}
         </Fragment>
@@ -67,63 +68,73 @@ const Header = ({ onClick, children }: HeaderProps) => (
 const EventDescription = ({ event }: { event: EventInfo }) => {
   const eventType = getEventType(event.eventtype);
   return (
-    <Box
-      direction="row"
-      fill="horizontal"
-      background="calendar-modal-background"
-      justify="center"
-      height="auto"
-    >
-      <Box margin="small" width="small">
-        <Text
-          a11yTitle="Event time"
-          margin="small"
-          size="small"
-          color="calendar-modal-text"
-        >
-          {event.eventtime}
-        </Text>
-        <Text
-          color="calendar-modal-text"
-          a11yTitle="Event Type"
-          margin="small"
-          size="small"
-        >
-          <strong>Type:</strong> {event.eventtype}
-        </Text>
-      </Box>
-      <Box margin="small" width="medium">
-        <Text
-          a11yTitle="Event name"
-          weight="bold"
-          size="medium"
-          color="calendar-modal-text"
-        >
-          {event.eventname}
-        </Text>
-
-        {event.location && (
+    <Box direction="column" flex="grow">
+      <Box
+        direction="row"
+        background="calendar-modal-background"
+        justify="center"
+      >
+        <Box margin="small" width="small" direction="column">
           <Text
-            a11yTitle="Event location"
+            a11yTitle="Event time"
+            margin={{ bottom: 'small' }}
             color="calendar-modal-text"
-            size="small"
+          >
+            {event.eventtime}
+          </Text>
+          <Text
+            color="calendar-modal-text"
+            a11yTitle="Event Type"
+            margin={{ bottom: 'small' }}
+          >
+            <strong>Type:</strong> {event.eventtype}
+          </Text>
+        </Box>
+        <Box margin="small" width="medium" direction="column">
+          <Text
+            a11yTitle="Event name"
+            weight="bold"
+            color="calendar-modal-text"
+            size="large"
+          >
+            {event.eventname}
+          </Text>
+
+          {event.location && (
+            <Text
+              a11yTitle="Event location"
+              color="calendar-modal-text"
+              margin={{ top: 'small' }}
+            >
+              <strong>Location:</strong> {event.location}
+            </Text>
+          )}
+          <Text
+            color="calendar-modal-text"
+            a11yTitle="BLM Endorsement?"
             margin={{ top: 'small' }}
           >
-            <strong>Location:</strong> {event.location}
+            {event.blmendorsed && <Checkmark />}
+            {`This event ${
+              event.blmendorsed ? 'is' : 'is not'
+            } endorsed by BLM Cleveland`}
           </Text>
-        )}
-
-        <Box margin={{ top: 'small' }} width="medium">
-          <Button
-            href={`/event/${event.id}/`}
-            label="Read More"
-            a11yTitle="Read More"
-            alignSelf="start"
-            target="_blank"
-            primary
-            color={`calendar-type-${eventType}-background`}
-          />
         </Box>
+      </Box>
+      <Box
+        direction="row"
+        background="calendar-modal-background"
+        alignSelf="end"
+      >
+        <Button
+          href={`/event/${event.id}/`}
+          label="Read More"
+          a11yTitle="Read More"
+          target="_blank"
+          primary
+          alignSelf="end"
+          color={`calendar-type-${eventType}-background`}
+        />
       </Box>
     </Box>
   );
