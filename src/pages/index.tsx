@@ -46,36 +46,8 @@ const CalendarPage = () => {
   const { rows, site } = useStaticQuery(SPREADSHEET_QUERY);
   const { limitMonthInTheFuture } = site.siteMetadata;
 
-  const __NODES = [
-    ...rows.nodes,
-    {
-      description: null,
-      eventdate: '7/20/2020',
-      eventlink:
-        'https://www.facebook.com/events/s/all-black-lives-matter-march/570178697031350',
-      eventname: 'All Black Lives Matter March',
-      eventtime: '2:00:00 PM',
-      eventtype: 'Action',
-      id: 'd9e74a6a-d65d-53ef-a55d-c46bfb3ecec6',
-      location: '1430 Abbey Avenue 44113↵Cleveland, Ohio 44113',
-      shouldpublish: true,
-    },
-  ].map((x, i) => {
-    switch (i) {
-      case 8:
-        return { ...x, eventtype: 'other' };
-      case 3:
-        return { ...x, eventtype: 'training' };
-      case 2:
-        return { ...x, eventtype: 'meeting' };
-      default:
-        return x;
-    }
-  });
-
   const months = useMemo(
-    // () => groupEventsByMonth(rows.nodes, limitMonthInTheFuture),
-    () => groupEventsByMonth(__NODES, limitMonthInTheFuture),
+    () => groupEventsByMonth(rows.nodes, limitMonthInTheFuture),
     [rows.nodes, limitMonthInTheFuture],
   );
 
