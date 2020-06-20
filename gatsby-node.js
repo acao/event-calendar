@@ -62,7 +62,10 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const eventTemplate = path.resolve(`src/templates/event.tsx`);
   console.log('creating pages:', queryResults.data.rows.nodes.length);
+
   queryResults.data.rows.nodes.forEach((node) => {
+    console.log(node);
+
     createPage({
       path: `/event/${node.id}`,
       component: eventTemplate,

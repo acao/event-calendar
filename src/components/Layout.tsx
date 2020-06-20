@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { Grommet } from 'grommet';
 import Helmet from './Helmet';
 import Footer from './Footer';
+import Header from './Header';
 import customTheme from '../utils/customTheme';
 
 const GlobalStyle = createGlobalStyle`
@@ -10,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     scroll-behavior: smooth;
         overflow-y: scroll;
+  }
+
+  h1 {
+    margin-top: 0;
   }
 `;
 
@@ -25,6 +30,7 @@ const Layout = ({ children }: Props) => (
   >
     <GlobalStyle />
     <Helmet />
+    <Header />
     {children}
     <Footer />
   </Grommet>

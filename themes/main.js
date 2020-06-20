@@ -1,19 +1,33 @@
 const BLACK = '#111';
+const PRIMARY = 'tomato';
+const SECONDARY = '#7FDBFF';
+const TERTIARY = '#FFDC00';
 
 const BORDER = '#ddd';
 
 module.exports = {
   background: '#f1f1f1',
-  brand: '#1fe5bd',
-  secondary: '#41a7b3',
-  focus: '#1fe5bd',
+  brand: PRIMARY,
+  secondary: SECONDARY,
+  black: BLACK,
+  focus: '#f1f1f1',
   text: BLACK,
   border: BORDER,
+  header: {
+    background: 'tomato',
+    text: BLACK,
+  },
+  footer: {
+    'developer-link': {
+      color: BLACK,
+    },
+    background: '#dcdcdc',
+  },
   calendar: {
     today: {
       background: '#ffffffbb',
-      text: 'tomato',
-      border: BORDER,
+      text: BLACK,
+      border: 'tomato',
     },
     day: {
       background: '#ffffffbb',
@@ -30,7 +44,7 @@ module.exports = {
       border: BORDER,
     },
     weekdays: {
-      background: '#ffffff22',
+      background: 'white',
       border: BORDER,
     },
     event: {
@@ -48,19 +62,19 @@ module.exports = {
     },
     'type-action': {
       text: 'white',
-      background: 'black',
+      background: BLACK,
     },
     'type-meeting': {
-      text: 'white',
-      background: 'tomato',
+      text: BLACK,
+      background: PRIMARY,
     },
     'type-training': {
-      text: 'white',
-      background: 'green',
+      text: BLACK,
+      background: SECONDARY,
     },
     'type-other': {
-      background: '#1fe5bdDD',
-      text: 'white',
+      background: TERTIARY,
+      text: BLACK,
     },
   },
 };

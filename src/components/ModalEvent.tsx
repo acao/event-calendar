@@ -3,6 +3,7 @@ import { Layer, Box, Text, Button } from 'grommet';
 import { FormClose, Checkmark } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
+import styled from 'styled-components';
 
 type Props = ModalData & {
   onClose: () => void;
@@ -57,7 +58,7 @@ const Header = ({ onClick, children }: HeaderProps) => (
     >
       <b>{children}</b>
     </Text>
-    <Button
+    <StyledButton
       icon={<FormClose />}
       a11yTitle="Close popup button"
       onClick={onClick}
@@ -70,6 +71,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
   return (
     <Box direction="column" flex="grow">
       <Box
+        style={{ borderRadius: '50px' }}
         direction="row"
         background="calendar-modal-background"
         justify="center"
@@ -87,7 +89,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
             a11yTitle="Event Type"
             margin={{ bottom: 'small' }}
           >
-            <strong>Type:</strong> {event.eventtype}
+            <strong>Type:</strong> {event.eventtype}{' '}
           </Text>
         </Box>
         <Box margin="small" width="medium" direction="column">
@@ -97,6 +99,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
             color="calendar-modal-text"
             size="large"
           >
+            <EventBadge background={`calendar-type-${eventType}-background`} />{' '}
             {event.eventname}
           </Text>
 
@@ -126,18 +129,32 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
         background="calendar-modal-background"
         alignSelf="end"
       >
-        <Button
+        <StyledButton
           href={`/event/${event.id}/`}
           label="Read More"
           a11yTitle="Read More"
           target="_blank"
           primary
           alignSelf="end"
-          color={`calendar-type-${eventType}-background`}
+          color="black"
         />
       </Box>
     </Box>
   );
 };
+
+const EventBadge = styled(Box)`
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+`;
+
+const StyledButton = styled(Button)`
+  border-radius: 3px;
+  color: #f1f1f1;
+`;
 
 export default ModalEvent;

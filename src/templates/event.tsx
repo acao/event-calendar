@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import { Heading, Text, Main, Button, Box } from 'grommet';
 import { Checkmark } from 'grommet-icons';
 import getEventType from '../utils/getEventType';
+import styled from 'styled-components';
 
 const LabelledText = ({ label, text }: { label: string; text: string }) => {
   return (
@@ -37,7 +38,7 @@ const EventPage = (props: { pageContext: { event: EventInfo } }) => {
         <p>{event.description}</p>
         <Box margin={{ top: 'small' }}>
           {event.eventlink && (
-            <Button
+            <StyledButton
               alignSelf="start"
               label={`External Link`}
               href={event.eventlink}
@@ -47,9 +48,9 @@ const EventPage = (props: { pageContext: { event: EventInfo } }) => {
           )}
         </Box>
         <Box margin={{ top: 'small' }}>
-          <Button
+          <StyledButton
             alignSelf="start"
-            label={`< Back to calendar`}
+            label={`Back to calendar`}
             href="/"
             primary
             color={`calendar-type-${eventType}-background`}
@@ -59,5 +60,10 @@ const EventPage = (props: { pageContext: { event: EventInfo } }) => {
     </Layout>
   );
 };
+
+const StyledButton = styled(Button)`
+  border-radius: 3px;
+  color: #f1f1f1;
+`;
 
 export default EventPage;
