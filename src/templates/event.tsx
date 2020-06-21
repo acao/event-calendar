@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 import { Heading, Text, Main, Button, Box } from 'grommet';
 import { Checkmark } from 'grommet-icons';
