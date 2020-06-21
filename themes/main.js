@@ -9,6 +9,7 @@ module.exports = {
   background: '#f1f1f1',
   brand: PRIMARY,
   secondary: SECONDARY,
+  tertiary: TERTIARY,
   black: BLACK,
   focus: '#f1f1f1',
   text: BLACK,
@@ -27,7 +28,7 @@ module.exports = {
     today: {
       background: '#ffffffbb',
       text: BLACK,
-      border: 'tomato',
+      border: BORDER,
     },
     day: {
       background: '#ffffffbb',
@@ -73,7 +74,7 @@ module.exports = {
       background: SECONDARY,
     },
     'type-other': {
-      background: TERTIARY,
+      background: '#06D6A0',
       text: BLACK,
     },
   },

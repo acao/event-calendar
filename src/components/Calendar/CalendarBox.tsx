@@ -27,7 +27,6 @@ const CalendarBox = ({ square, children, isToday, ...rest }: Props) => {
 const StyledBox = styled(Box)<Props>`
   cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
   height: ${(props) => (props.square ? '8rem' : 'inherit')};
-  border-width: ${(props) => (props.isToday ? '2px' : '1px')};
   position: relative;
 `;
 

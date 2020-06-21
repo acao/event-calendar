@@ -1,13 +1,11 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Box } from 'grommet';
 import { graphql, useStaticQuery } from 'gatsby';
-import Footer from '../components/Footer';
 import ModalEvent from '../components/ModalEvent';
 import Month from '../components/Calendar/Month';
 import Layout from '../components/Layout';
 import groupEventsByMonth from '../utils/groupEventsByMonth';
 import { format } from 'date-fns';
-import Hero from '../components/Hero';
 
 // override this query with your own questions!
 const SPREADSHEET_QUERY = graphql`
@@ -34,6 +32,7 @@ const SPREADSHEET_QUERY = graphql`
         description
         eventtype
         shouldpublish
+        blmendorsed
       }
     }
   }

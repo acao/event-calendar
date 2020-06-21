@@ -66,17 +66,21 @@ const CalendarDay = ({ date, type, isToday }: DayProps) => (
     size="medium"
     a11yTitle="Day number"
     textAlign="end"
+    isToday={isToday}
   >
     {format(date, 'dd')}
   </DayText>
 );
 
-const DayText = styled(Text)<{ type: string }>`
+const DayText = styled(Text)<{ type: string; isToday: boolean }>`
   text-decoration: ${(props) =>
     props.type === 'past' ? 'line-through' : 'inherit'};
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
+  line-height: 1;
   right: 10px;
+  border-bottom: 3px solid
+    ${(props) => (props.isToday ? 'tomato' : 'rgba(0, 0, 0, 0)')};
 `;
 
 export default Day;

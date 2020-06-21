@@ -4,6 +4,7 @@ import { FormClose, Checkmark } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
 import styled from 'styled-components';
+import BLMEndorsedBadge from './BLMEndorsedBadge';
 
 type Props = ModalData & {
   onClose: () => void;
@@ -68,6 +69,7 @@ const Header = ({ onClick, children }: HeaderProps) => (
 
 const EventDescription = ({ event }: { event: EventInfo }) => {
   const eventType = getEventType(event.eventtype);
+
   return (
     <Box direction="column" flex="grow">
       <Box
@@ -112,22 +114,14 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
               <strong>Location:</strong> {event.location}
             </Text>
           )}
-          <Text
-            color="calendar-modal-text"
-            a11yTitle="BLM Endorsement?"
-            margin={{ top: 'small' }}
-          >
-            {event.blmendorsed && <Checkmark />}
-            {`This event ${
-              event.blmendorsed ? 'is' : 'is not'
-            } endorsed by BLM Cleveland`}
-          </Text>
+          <BLMEndorsedBadge isEndorsed={event.blmendorsed} />
         </Box>
       </Box>
       <Box
         direction="row"
         background="calendar-modal-background"
         alignSelf="end"
+        style={{ marginTop: 22 }}
       >
         <StyledButton
           href={`/event/${event.id}/`}
@@ -150,6 +144,11 @@ const EventBadge = styled(Box)`
   display: inline-block;
   position: relative;
   top: -2px;
+`;
+
+const EndorsedBadge = styled(Box)`
+  border-radius: 3px;
+  display: flex;
 `;
 
 const StyledButton = styled(Button)`

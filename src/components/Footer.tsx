@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Text, Anchor } from 'grommet';
+import { Box, Text, Anchor, Footer as GrommetFooter } from 'grommet';
 import styled from 'styled-components';
 
 const Footer = () => (
-  <Box
+  <GrommetFooter
     background="footer-background"
     tag="footer"
     justify="between"
@@ -23,7 +23,7 @@ const Footer = () => (
         CDSDC
       </StyledAnchor>
     </Text>
-  </Box>
+  </GrommetFooter>
 );
 
 const StyledAnchor = styled(Anchor)`
