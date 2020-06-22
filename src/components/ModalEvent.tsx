@@ -1,6 +1,6 @@
 import React, { ReactNode, Fragment } from 'react';
 import { Layer, Box, Text, Button } from 'grommet';
-import { FormClose, Checkmark } from 'grommet-icons';
+import { FormClose } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
 import styled from 'styled-components';
@@ -74,7 +74,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
     <Box direction="column" flex="grow">
       <Box
         style={{ borderRadius: '50px' }}
-        direction="row"
+        direction="row-responsive"
         background="calendar-modal-background"
         justify="center"
       >
@@ -144,11 +144,6 @@ const EventBadge = styled(Box)`
   display: inline-block;
   position: relative;
   top: -2px;
-`;
-
-const EndorsedBadge = styled(Box)`
-  border-radius: 3px;
-  display: flex;
 `;
 
 const StyledButton = styled(Button)`
