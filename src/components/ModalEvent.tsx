@@ -1,8 +1,10 @@
 import React, { ReactNode, Fragment } from 'react';
 import { Layer, Box, Text, Button } from 'grommet';
-import { FormClose, Checkmark } from 'grommet-icons';
+import { FormClose } from 'grommet-icons';
 import { format } from 'date-fns';
 import getEventType from '../utils/getEventType';
+import styled from 'styled-components';
+import BLMEndorsedBadge from './BLMEndorsedBadge';
 
 type Props = ModalData & {
   onClose: () => void;
@@ -57,7 +59,7 @@ const Header = ({ onClick, children }: HeaderProps) => (
     >
       <b>{children}</b>
     </Text>
-    <Button
+    <StyledButton
       icon={<FormClose />}
       a11yTitle="Close popup button"
       onClick={onClick}
@@ -67,10 +69,12 @@ const Header = ({ onClick, children }: HeaderProps) => (
 
 const EventDescription = ({ event }: { event: EventInfo }) => {
   const eventType = getEventType(event.eventtype);
+
   return (
     <Box direction="column" flex="grow">
       <Box
-        direction="row"
+        style={{ borderRadius: '50px' }}
+        direction="row-responsive"
         background="calendar-modal-background"
         justify="center"
       >
@@ -87,7 +91,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
             a11yTitle="Event Type"
             margin={{ bottom: 'small' }}
           >
-            <strong>Type:</strong> {event.eventtype}
+            <strong>Type:</strong> {event.eventtype}{' '}
           </Text>
         </Box>
         <Box margin="small" width="medium" direction="column">
@@ -97,6 +101,7 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
             color="calendar-modal-text"
             size="large"
           >
+            <EventBadge background={`calendar-type-${eventType}-background`} />{' '}
             {event.eventname}
           </Text>
 
@@ -109,35 +114,41 @@ const EventDescription = ({ event }: { event: EventInfo }) => {
               <strong>Location:</strong> {event.location}
             </Text>
           )}
-          <Text
-            color="calendar-modal-text"
-            a11yTitle="BLM Endorsement?"
-            margin={{ top: 'small' }}
-          >
-            {event.blmendorsed && <Checkmark />}
-            {`This event ${
-              event.blmendorsed ? 'is' : 'is not'
-            } endorsed by BLM Cleveland`}
-          </Text>
+          <BLMEndorsedBadge isEndorsed={event.blmendorsed} />
         </Box>
       </Box>
       <Box
         direction="row"
         background="calendar-modal-background"
         alignSelf="end"
+        style={{ marginTop: 22 }}
       >
-        <Button
+        <StyledButton
           href={`/event/${event.id}/`}
           label="Read More"
           a11yTitle="Read More"
           target="_blank"
           primary
           alignSelf="end"
-          color={`calendar-type-${eventType}-background`}
+          color="black"
         />
       </Box>
     </Box>
   );
 };
+
+const EventBadge = styled(Box)`
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+`;
+
+const StyledButton = styled(Button)`
+  border-radius: 3px;
+  color: #f1f1f1;
+`;
 
 export default ModalEvent;

@@ -24,6 +24,7 @@ const Day = ({ date, events, onClick }: Props) => {
 
   return (
     <CalendarBox
+      isToday={isToday}
       background={`calendar-${dayType}-background`}
       border={{ color: `calendar-${dayType}-border` }}
       pad={phoneViewport ? 'small' : 'xsmall'}
@@ -36,14 +37,14 @@ const Day = ({ date, events, onClick }: Props) => {
         </Show>
         <Events events={events} hasPast={hasPast} />
         <Hide size="small">
-          <CalendarDay date={date} type={dayType} />
+          <CalendarDay date={date} type={dayType} isToday={isToday} />
         </Hide>
       </Box>
     </CalendarBox>
   );
 };
 
-type DayProps = { date: Date; type: string };
+type DayProps = { date: Date; type: string; isToday: boolean };
 
 const RowDay = ({ date, type }: DayProps) => (
   <Box width="xsmall">
@@ -57,24 +58,29 @@ const RowDay = ({ date, type }: DayProps) => (
   </Box>
 );
 
-const CalendarDay = ({ date, type }: DayProps) => (
+const CalendarDay = ({ date, type, isToday }: DayProps) => (
   <DayText
     color={`calendar-${type}-text`}
+    weight={isToday ? 'bold' : 'normal'}
     type={type}
-    size="large"
+    size="medium"
     a11yTitle="Day number"
     textAlign="end"
+    isToday={isToday}
   >
     {format(date, 'dd')}
   </DayText>
 );
 
-const DayText = styled(Text)<{ type: string }>`
+const DayText = styled(Text)<{ type: string; isToday: boolean }>`
   text-decoration: ${(props) =>
     props.type === 'past' ? 'line-through' : 'inherit'};
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
+  line-height: 1;
   right: 10px;
+  border-bottom: 3px solid
+    ${(props) => (props.isToday ? 'tomato' : 'rgba(0, 0, 0, 0)')};
 `;
 
 export default Day;

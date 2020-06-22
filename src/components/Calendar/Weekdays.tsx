@@ -25,6 +25,8 @@ const Weekdays = () => (
           textAlign="center"
           color="calendar-weekdays-text"
           truncate
+          size="small"
+          weight="bold"
           a11yTitle={weekday}
         >
           {weekday}

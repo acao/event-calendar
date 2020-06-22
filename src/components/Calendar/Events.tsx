@@ -51,7 +51,7 @@ const Events = ({ events, hasPast }: Props) => {
         );
       })}
 
-      {events.length > MAX_AMOUNT_EVENTS && (
+      {events.length > MAX_AMOUNT_EVENTS && !isPhone && (
         <Text size="small" truncate>
           {`And ${events.length - MAX_AMOUNT_EVENTS} more ...`}
         </Text>

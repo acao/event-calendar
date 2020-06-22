@@ -33,9 +33,7 @@ module.exports = {
         worksheetTitle: 'Events',
         credentials: process.env.PROJECT_ID
           ? buildCredentials(process.env)
-          : path.resolve(
-              '/home/rikki/Downloads/event-calendar-280122-d3ef5997819e.json',
-            ),
+          : path.resolve(process.env.CREDENTIALS_PATH),
       },
     },
     {

@@ -4,14 +4,16 @@ import styled from 'styled-components';
 
 type Props = BoxProps & {
   square?: boolean;
+  isToday: boolean;
   children?: ReactNode;
 };
 
-const CalendarBox = ({ square, children, ...rest }: Props) => {
+const CalendarBox = ({ square, children, isToday, ...rest }: Props) => {
   const size = useContext(ResponsiveContext);
 
   return (
     <StyledBox
+      isToday={isToday}
       square={square && size !== 'small'}
       width="calc(100% / 7)"
       fill={size === 'small' ? 'horizontal' : 'vertical'}
