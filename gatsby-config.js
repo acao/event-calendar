@@ -58,5 +58,13 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `https://cms.cdsdc.org`,
+        queryLimit: 1000, // Default to 100
+        contentTypes: ['events'],
+      },
+    },
   ],
 };

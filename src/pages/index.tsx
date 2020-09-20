@@ -6,16 +6,32 @@ import Month from '../components/Calendar/Month';
 import Layout from '../components/Layout';
 import groupEventsByMonth from '../utils/groupEventsByMonth';
 import { format } from 'date-fns';
+import { formatStrapiDate } from '../utils/formatStrapiDate';
+import { formatStrapiTime } from '../utils/formatStrapiTime';
 
 // override this query with your own questions!
-const SPREADSHEET_QUERY = graphql`
+const EVENTS_QUERY = graphql`
   query AllRows {
     site {
       siteMetadata {
         limitMonthInTheFuture
       }
     }
-    rows: allGoogleSheetEventsRow(
+    strapi: allStrapiEvents {
+      nodes {
+        id
+        eventname
+        eventdate
+        eventtime
+        eventlink
+        location
+        description
+        eventtype
+        shouldpublish
+        blmendorsed
+      }
+    }
+    googleSheets: allGoogleSheetEventsRow(
       filter: {
         eventname: { ne: null }
         eventdate: { ne: null }
@@ -42,12 +58,21 @@ const CalendarPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState<ModalData>();
 
-  const { rows, site } = useStaticQuery(SPREADSHEET_QUERY);
+  const { googleSheets, strapi, site } = useStaticQuery(EVENTS_QUERY);
   const { limitMonthInTheFuture } = site.siteMetadata;
 
+  const nodes = [
+    ...googleSheets.nodes,
+    ...strapi.nodes.map((node: EventInfo) => ({
+      ...node,
+      eventdate: formatStrapiDate(node.eventdate),
+      eventtime: formatStrapiTime(node.eventtime),
+    })),
+  ];
+
   const months = useMemo(
-    () => groupEventsByMonth(rows.nodes, limitMonthInTheFuture),
-    [rows.nodes, limitMonthInTheFuture],
+    () => groupEventsByMonth(nodes, limitMonthInTheFuture),
+    [nodes, limitMonthInTheFuture],
   );
 
   const openModal = useCallback((data: ModalData) => {
