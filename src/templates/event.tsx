@@ -17,7 +17,6 @@ const LabelledText = ({ label, text }: { label: string; text: string }) => {
 const EventPage = (props: { pageContext: { event: EventInfo } }) => {
   const { event } = props.pageContext;
   const eventType = getEventType(event.eventtype);
-  console.log(event);
   return (
     <Layout>
       <Main pad="large" animation="fadeIn">
