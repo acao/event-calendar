@@ -61,7 +61,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `https://cms.cdsdc.org`,
+        apiURL: `<URL>`,
         queryLimit: 1000, // Default to 100
         contentTypes: ['events'],
       },
